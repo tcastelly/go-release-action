@@ -6,7 +6,7 @@ if [ x${INPUT_BINARY_NAME} != x ]; then
   BINARY_NAME=${INPUT_BINARY_NAME}
 fi
 RELEASE_TAG=$(basename ${GITHUB_REF})
-RELEASE_ASSET_NAME=${BINARY_NAME}-${RELEASE_TAG}-${INPUT_GOOS}-${INPUT_GOARCH}
+RELEASE_ASSET_NAME=${BINARY_NAME}-${INPUT_GOOS}-${INPUT_GOARCH}
 
 # prepare upload URL
 RELEASE_ASSETS_UPLOAD_URL=$(cat ${GITHUB_EVENT_PATH} | jq -r .release.upload_url)
@@ -23,7 +23,7 @@ if [ ${INPUT_GOOS} == 'windows' ]; then
   EXT='.exe'
 fi
 
-# prefix for ldflags 
+# prefix for ldflags
 LDFLAGS_PREFIX=''
 if [ ! -z "${INPUT_LDFLAGS}" ]; then
     LDFLAGS_PREFIX="-ldflags"
@@ -33,7 +33,7 @@ fi
 cd ${INPUT_PROJECT_PATH}
 BUILD_ARTIFACTS_FOLDER=build-artifacts-$(date +%s)
 mkdir -p ${BUILD_ARTIFACTS_FOLDER}
-GOOS=${INPUT_GOOS} GOARCH=${INPUT_GOARCH} go build -o ${BUILD_ARTIFACTS_FOLDER}/${BINARY_NAME}${EXT} ${INPUT_BUILD_FLAGS} ${LDFLAGS_PREFIX} "${INPUT_LDFLAGS}" 
+GOOS=${INPUT_GOOS} GOARCH=${INPUT_GOARCH} go build -o ${BUILD_ARTIFACTS_FOLDER}/${BINARY_NAME}${EXT} ${INPUT_BUILD_FLAGS} ${LDFLAGS_PREFIX} "${INPUT_LDFLAGS}"
 
 # prepare extra files
 if [ ! -z "${INPUT_EXTRA_FILES}" ]; then
