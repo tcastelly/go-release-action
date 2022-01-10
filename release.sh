@@ -48,10 +48,10 @@ ls -lha
 # compress and package binary, then calculate checksum
 RELEASE_ASSET_EXT='.tar.gz'
 if [ ${INPUT_GOOS} == 'windows' ]; then
-RELEASE_ASSET_EXT='.zip'
+  RELEASE_ASSET_EXT='.zip'
 zip -vr ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} *
 else
-tar cvfz ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} *
+  tar cvfz ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} *
 fi
 MD5_SUM=$(md5sum ${RELEASE_ASSET_NAME}${RELEASE_ASSET_EXT} | cut -d ' ' -f 1)
 
