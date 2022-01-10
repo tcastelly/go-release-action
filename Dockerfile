@@ -13,4 +13,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteract
 COPY *.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 
-LABEL maintainer="Jay Zhang <wangyoucao577@gmail.com>"
+LABEL maintainer="Thomas CASTELLY <thomas@tcy.io>"
