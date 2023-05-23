@@ -7,6 +7,10 @@ inputs:
     description: 'GITHUB_TOKEN for uploading releases to Github asserts.'
     required: true
     default: ''
+  buildvcs:
+    description: 'omitted embededs version with false'
+    required: false
+    default: 'auto'
   goos:
     description: 'GOOS is the running programs operating system target: one of darwin, freebsd, linux, and so on.'
     required: true
@@ -31,7 +35,7 @@ inputs:
     description: 'Where to run `go build .`'
     required: false
     default: '.'
-  binary_name:  
+  binary_name:
     description: 'Specify another binary name if do not want to use repository basename'
     required: false
     default: ''
@@ -48,6 +52,7 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.github_token }}
+    - ${{ inputs.buildvcs }}
     - ${{ inputs.goos }}
     - ${{ inputs.goarch }}
     - ${{ inputs.goversion }}
@@ -58,5 +63,5 @@ runs:
     - ${{ inputs.pre_command }}
     - ${{ inputs.extra_files }}
 branding:
-  icon: 'package'  
+  icon: 'package'
   color: 'blue'
