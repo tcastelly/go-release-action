@@ -1,5 +1,4 @@
-
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   build-essential \
